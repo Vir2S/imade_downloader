@@ -10,6 +10,7 @@ class Window(QWidget):
         self.title = TITLE
         self.icon = ICON
         self.create_ui()
+        self.urls = []
         # self.setupUi(self)
 
     def create_ui(self):
@@ -31,4 +32,5 @@ class Window(QWidget):
         self.add_button.clicked.connect(self.add_url)
 
     def add_url(self):
-        self.urls_entry.addItem(str(self.url_entry.text()))
+        self.urls.append(self.url_entry.text())
+        self.urls_entry.addItem(self.url_entry.text())
