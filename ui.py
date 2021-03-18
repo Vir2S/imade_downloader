@@ -1,6 +1,6 @@
 from config import *
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QTextEdit, QGridLayout, QWidget
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QTextEdit, QGridLayout, QWidget, QListWidget
 from PyQt5.QtGui import QIcon
 
 
@@ -17,20 +17,18 @@ class Window(QWidget):
         self.setWindowTitle(self.title)
         self.setWindowIcon(QIcon(self.icon))
 
-        self.urls_lst = []
-        self.urls = QTextEdit("TEXT", self)
-        self.url = QLineEdit("URL", self)
+        self.urls_entry = QListWidget()
+        self.url_entry = QLineEdit("URL", self)
         self.add_button = QPushButton("Add", self)
 
         self.layout = QGridLayout()
-        self.layout.addWidget(self.url)
+        self.layout.addWidget(self.url_entry)
         self.layout.addWidget(self.add_button)
-        self.layout.addWidget(self.urls)
+        self.layout.addWidget(self.urls_entry)
 
         self.setLayout(self.layout)
 
         self.add_button.clicked.connect(self.add_url)
 
     def add_url(self):
-        self.urls_lst.append(self.url.text())
-        self.urls.setText(str(self.urls_lst))
+        self.urls_entry.addItem(str(self.url_entry.text()))
